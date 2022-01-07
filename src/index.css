@@ -72,6 +72,11 @@ a {
   color: white;
 }
 
+.slide.active {
+  height: 100%;
+  width: 100%;
+}
+
 .game_section {
   padding: 80px;
   position: relative;
@@ -235,6 +240,10 @@ form input:focus {
 
 .review .carousel {
   height: 70vh;
+}
+
+.review_tag {
+  margin-bottom: 80px;
 }
 .image {
   width: 100%;

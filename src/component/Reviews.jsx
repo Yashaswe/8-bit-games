@@ -82,7 +82,7 @@ const Reviews = () => {
   }
   return (
     <div className="review">
-      <h1>Loved by everyone</h1>
+      <h1 className="review_tag">Loved by everyone</h1>
       <div className="carousel">
         {reviews.map((review, index) => {
           return (
