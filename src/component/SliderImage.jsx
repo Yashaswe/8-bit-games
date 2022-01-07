@@ -21,7 +21,7 @@ const SliderImage = (images) => {
 
   return (
     <div
-      className="slider"
+      className="imgslider"
       style={{
         backgroundImage: `url(${urlString})`,
       }}
