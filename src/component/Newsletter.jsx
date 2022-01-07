@@ -29,7 +29,11 @@ const Newsletter = () => {
             ></input>
           </div>
         </div>
-        <button type="submit" className="subscribe">
+        <button
+          type="submit"
+          className="subscribe"
+          onClick={() => window.alert("Thank you for subscribing")}
+        >
           Subscribe
         </button>
       </form>
