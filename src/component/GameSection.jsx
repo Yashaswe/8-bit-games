@@ -59,7 +59,7 @@ const GameSection = () => {
   }
   return (
     <div className="game_section">
-      <h2>All the retro games in once place</h2>
+      <h2>All the retro games in one place</h2>
       <div className="games">
         <button
           className={showActiveClassName(1)}

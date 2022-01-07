@@ -7,7 +7,7 @@ const About = () => {
         <br></br>
         <p>
           8-Bit games provides free retro games on-site for everyone to play.
-          Bringing back nostalgic memories of NES classsic games online
+          Bringing back nostalgic memories of NES classic games online
         </p>
       </div>
       <div className="mario_img">
