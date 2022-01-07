@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import Review1 from "../img/review/review1.png";
 import Review2 from "../img/review/review2.png";
 import Review3 from "../img/review/review3.png";
+import Unchecked from "../img/icons/unchecked_star.png";
+import Checked from "../img/icons/checked_star.png";
 const Reviews = () => {
   const [current, setCurrent] = useState(0);
+  const stars = [];
 
   const reviews = [
     {
       id: 0,
       name: "Johan Smith",
-      img: Review1,
+      img: Review3,
       star: 5,
       quote: "Retro Game is the best!",
       review:
@@ -18,7 +21,7 @@ const Reviews = () => {
     {
       id: 1,
       name: "Rudolf Klinman",
-      img: Review2,
+      img: Review1,
       star: 4,
       quote: "One word! Amazing!",
       review:
@@ -27,7 +30,7 @@ const Reviews = () => {
     {
       id: 2,
       name: "Karen Brown",
-      img: Review3,
+      img: Review2,
       star: 3,
       quote: "Could be better!",
       review:
@@ -35,6 +38,24 @@ const Reviews = () => {
     },
   ];
   const length = reviews.length;
+  function checkedOrNot(starNo) {
+    for (let i = 0; i < starNo; i++) {
+      stars.push(
+        <span className="star active">
+          <img src={Checked} />
+        </span>
+      );
+    }
+    for (let i = 0; i < 5 - starNo; i++) {
+      stars.push(
+        <span className="star">
+          <img src={Unchecked} />
+        </span>
+      );
+    }
+    return <div>{stars}</div>;
+  }
+
   useEffect(() => {
     const timer = setTimeout(() => {
       nextSlide();
@@ -47,7 +68,6 @@ const Reviews = () => {
     const newSlideIndex = slideIndex >= length ? 0 : slideIndex;
 
     setCurrent(newSlideIndex);
-    console.log(current);
   }
 
   function changeImage(val) {
@@ -61,7 +81,7 @@ const Reviews = () => {
     return "slidebutton";
   }
   return (
-    <div class="review">
+    <div className="review">
       <h1>Loved by everyone</h1>
       <div className="carousel">
         {reviews.map((review, index) => {
@@ -74,6 +94,7 @@ const Reviews = () => {
                 <div>
                   <img src={review.img} className="review_image"></img>
                   <h3>{review.name}</h3>
+                  <div>{checkedOrNot(review.star)}</div>
                   <p>{review.quote}</p>
                   <p>{review.review}</p>
                 </div>
