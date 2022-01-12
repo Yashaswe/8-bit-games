@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import logo from "../img/8bit-logo.png";
+
 const Header = () => {
   const [bgheader, setBgHeader] = useState(false);
   const changeBackground = () => {
-    if (window.scrollY >= 600) {
+    if (window.scrollY >= 500) {
       setBgHeader(true);
     }
   };
-  window.addEventListener("scroll", changeBackground);
+  useEffect(() => {
+    window.addEventListener("scroll", changeBackground);
+  }, []);
 
   return (
     <header className={bgheader ? "header_active" : ""}>

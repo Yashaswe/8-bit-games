@@ -1,7 +1,59 @@
 import supermariobros from "../img/games/supermariobros.png";
-import { useState } from "react";
+import ReactDOM from "react-dom";
+
+import { useState, useEffect } from "react";
+
+function Popup(item) {
+  const header = Array.from(document.getElementsByTagName("header"))[0] || null;
+  if (header === null) {
+    return null;
+  } else {
+    if (item.isOpen) {
+      document.body.style.overflow = "hidden";
+      header.style.visibility = "hidden";
+      return (
+        <div className="popup_box">
+          <div className="popup">
+            <div className="left_popup">
+              <img src={item.data.img}></img>
+            </div>
+            <div className="right_popup">
+              <button className="close-icon" onClick={item.onClose}>
+                x
+              </button>
+              <h3>{item.data.name}</h3>
+              <p>{item.data.category}</p>
+              <br></br>
+              <p>NES release date: October 1985</p>
+              <p>Number of players: 2</p>
+              <p>Developer: Nintendo</p>
+              <br></br>
+              <button className="game_category active">Play Game</button>
+            </div>
+          </div>
+        </div>
+      );
+    } else {
+      document.body.style.overflow = "scroll";
+      header.style.visibility = "visible";
+      return null;
+    }
+  }
+}
 
 const GameSection = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [gameClicked, setGameClicked] = useState([]);
+  const clickGame = (game) => {
+    togglePopup();
+    setGameClicked(game);
+  };
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  };
+  const popupCloseHandler = () => {
+    setIsOpen(false);
+  };
   const games_data = [
     {
       id: 1,
@@ -101,7 +153,7 @@ const GameSection = () => {
       </div>
       <div className="all_games">
         {games.items.map((game) => (
-          <div className="game" key={game.id}>
+          <div className="game" key={game.id} onClick={() => clickGame(game)}>
             <div className="frame">
               <img src={game.img}></img>
               <div className="overlay">
@@ -113,6 +165,15 @@ const GameSection = () => {
           </div>
         ))}
       </div>
+
+      {ReactDOM.createPortal(
+        <Popup
+          data={gameClicked}
+          onClose={popupCloseHandler}
+          isOpen={isOpen}
+        />,
+        document.getElementById("root")
+      )}
     </div>
   );
 };
